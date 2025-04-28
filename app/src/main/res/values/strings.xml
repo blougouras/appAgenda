@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">dataBase</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="hello_world">Hello World</string>
+    <string name="voltar">Voltar</string>
+    <string name="txt_nome">Luiz</string>
+    <string name="Text_Nome">Luiz</string>
+    <string name="text_Idade">20</string>
+    <string name="txt_sobrenome">Henrique</string>
+    <string name="telefone">11 99999-5555</string>
 </resources>

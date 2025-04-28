@@ -27,6 +27,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAllCaps="true"
+            android:backgroundTint="@color/black"
             android:padding="10dp"
             android:layout_margin="20dp"
             />
