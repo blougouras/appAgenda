@@ -3,5 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lightGrey">#555957</color>
-    <color name="reflexo">#594E5C</color>
+    <color name="roxo">#3d1f4f</color>
+    <color name="lightblue">#b5dbf5</color>
 </resources>

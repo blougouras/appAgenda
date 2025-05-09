@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.database.dao.UsuarioDao
 import com.example.database.databinding.ActivityCadastroUsuariosBinding
 import com.example.database.model.Usuarios
 import kotlinx.coroutines.CoroutineScope
@@ -12,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.widget.Toast
+import com.example.database.dao.UsuarioDao
 
 
 class CadastroUsuarios : AppCompatActivity() {

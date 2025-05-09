@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DataBase"
         tools:targetApi="31">
         <activity
+            android:name=".AtualizarUsuario"
+            android:exported="false" />
+        <activity
             android:name=".CadastroUsuarios"
             android:exported="false" />
         <activity

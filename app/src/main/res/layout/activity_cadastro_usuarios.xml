@@ -13,7 +13,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".CadastroUsuarios">
+        tools:context=".CadastroUsuarios"
+        android:background="@color/lightblue">
 
         <Button
             android:id="@+id/voltar"
@@ -36,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nome: "
+                android:textColor="@color/black"
                 android:layout_marginBottom="20dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -47,6 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Sobrenome: "
+                    android:textColor="@color/black"
                     android:layout_marginBottom="20dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -58,6 +61,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:hint="Idade: "
+                        android:textColor="@color/black"
                         android:layout_marginBottom="20dp"/>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +73,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Celular: "
+                            android:textColor="@color/black"
                             android:layout_marginBottom="20dp"/>
 
                         <Button

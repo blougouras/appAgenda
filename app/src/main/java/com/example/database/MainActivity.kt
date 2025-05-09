@@ -1,9 +1,7 @@
 package com.example.database
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,75 +14,75 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainActivity : AppCompatActivity() {
-    lateinit var button1: Button
+class MainActivity : AppCompatActivity(), ContatoAdapter.OnItemClickListener {
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var usuarioDao: UsuarioDao
     private lateinit var contatoAdapter: ContatoAdapter
     private val _listaUsuario = MutableLiveData<MutableList<Usuarios>>()
 
-
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        button1 = findViewById(R.id.button)
-        button1.setOnClickListener {
-            val intent = Intent(
-                this,
-                CadastroUsuarios::class.java
-            )
+        // Botão para ir à tela de cadastro
+        binding.button.setOnClickListener {
+            val intent = Intent(this, CadastroUsuarios::class.java)
             startActivity(intent)
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            getContatos()
-
-            withContext(Dispatchers.Main){
-
-                _listaUsuario.observe(this@MainActivity){ listaUsuario ->
-
-                    val recyclerViewContato = binding.recyclerViewContatos
-                    recyclerViewContato.layoutManager = LinearLayoutManager(this@MainActivity)
-                    recyclerViewContato.setHasFixedSize(true)
-                    contatoAdapter = ContatoAdapter(this@MainActivity, listaUsuario)
-                    recyclerViewContato.adapter = contatoAdapter
-                    contatoAdapter.notifyDataSetChanged()
-                }
-            }
+        // Setup RecyclerView com o adapter atualizado
+        contatoAdapter = ContatoAdapter(this, mutableListOf(), this)
+        binding.recyclerViewContatos.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            setHasFixedSize(true)
+            adapter = contatoAdapter
         }
 
+        // Observa a lista de usuários
+        _listaUsuario.observe(this) { listaUsuario ->
+            contatoAdapter.updateList(listaUsuario)
+        }
+
+        carregarContatos()
     }
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onResume() {
         super.onResume()
-
-        CoroutineScope(Dispatchers.IO).launch {
-            getContatos()
-
-            withContext(Dispatchers.Main){
-
-                _listaUsuario.observe(this@MainActivity){ listaUsuario ->
-
-                    val recyclerViewContato = binding.recyclerViewContatos
-                    recyclerViewContato.layoutManager = LinearLayoutManager(this@MainActivity)
-                    recyclerViewContato.setHasFixedSize(true)
-                    contatoAdapter = ContatoAdapter(this@MainActivity, listaUsuario)
-                    recyclerViewContato.adapter = contatoAdapter
-                    contatoAdapter.notifyDataSetChanged()
-                }
-            }
-        }
-
+        carregarContatos() // Atualiza lista ao voltar
     }
 
+    private fun carregarContatos() {
+        CoroutineScope(Dispatchers.IO).launch {
+            usuarioDao = AppDataBase.getInstance(this@MainActivity).usuarioDao()
+            val listaUsuarios = usuarioDao.get()
+            _listaUsuario.postValue(listaUsuarios)
+        }
+    }
 
+    // Clique no botão de atualizar
+    override fun onAtualizarClick(usuario: Usuarios) {
+        val intent = Intent(this, AtualizarUsuario::class.java).apply {
+            putExtra("uid", usuario.uid)
+            putExtra("nome", usuario.nome)
+            putExtra("sobrenome", usuario.sobrenome)
+            putExtra("idade", usuario.idade)
+            putExtra("celular", usuario.celular)
+        }
+        startActivity(intent)
+    }
 
-    private fun getContatos(){
-        usuarioDao = AppDataBase.getInstance(this).usuarioDao()
-        val listaUsuarios: MutableList<Usuarios> = usuarioDao.get()
-        _listaUsuario.postValue(listaUsuarios)
+    // Clique no botão de deletar
+    override fun onDeletarClick(usuario: Usuarios) {
+        CoroutineScope(Dispatchers.IO).launch {
+            usuarioDao = AppDataBase.getInstance(this@MainActivity).usuarioDao()
+            usuarioDao.deletar(usuario)
+
+            val novaLista = usuarioDao.get()
+            withContext(Dispatchers.Main) {
+                _listaUsuario.postValue(novaLista)
+            }
+        }
     }
 }
