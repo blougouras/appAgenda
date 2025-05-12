@@ -10,23 +10,23 @@
 
     <LinearLayout
         android:id="@+id/main"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".CadastroUsuarios"
-        android:background="@color/lightblue">
+        android:background="@drawable/fundo_nuvem"
+        android:orientation="vertical"
+        tools:context=".CadastroUsuarios">
 
         <Button
             android:id="@+id/voltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/voltar"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:backgroundTint="@color/black"
             android:layout_margin="10dp"
-            android:padding="10dp"/>
+            android:backgroundTint="@color/black"
+            android:padding="10dp"
+            android:text="@string/voltar"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -36,9 +36,9 @@
                 android:id="@+id/editNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:hint="Nome: "
-                android:textColor="@color/black"
-                android:layout_marginBottom="20dp"/>
+                android:textColor="@color/white"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -48,9 +48,9 @@
                     android:id="@+id/editSobrenome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:hint="Sobrenome: "
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="20dp"/>
+                    android:textColor="@color/white"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -60,9 +60,9 @@
                         android:id="@+id/editIdade"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
                         android:hint="Idade: "
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="20dp"/>
+                        android:textColor="@color/white" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -72,20 +72,20 @@
                             android:id="@+id/editCelular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
                             android:hint="Celular: "
-                            android:textColor="@color/black"
-                            android:layout_marginBottom="20dp"/>
+                            android:textColor="@color/white" />
 
                         <Button
                             android:id="@+id/button3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:backgroundTint="@color/black"
+                            android:text="Cadastrar"
                             android:textAllCaps="true"
                             android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:backgroundTint="@color/black"
-                            android:text="Cadastrar" />
+                            android:textStyle="bold" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.textfield.TextInputLayout>
